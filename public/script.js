@@ -46,33 +46,33 @@ const feedbackText = document.getElementById('feedback-text');
 const startQuizButton = document.getElementById('startQuiz');
 const nextQuestionButton = document.getElementById('nextQuestion');
 
-fetchYoutubeButton.addEventListener('click', async () => {
-    getAiResponseAndAppend()
-})
-const getAiResponseAndAppend = () => {
-    const url = youtubeUrlInput.value;
-    if (url) {
-        fetch('/ai/talking', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ url }),
-        })
-            .then(response => response.text())
-            .then(data => {
-                aiResponse.innerText = data;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Check console for details.');
-            });
-    } else {
-        alert('Please enter a YouTube URL');
-    }
+// fetchYoutubeButton.addEventListener('click', async () => {
+//     getAiResponseAndAppend()
+// })
+// const getAiResponseAndAppend = () => {
+//     const url = youtubeUrlInput.value;
+//     if (url) {
+//         fetch('/ai/talking', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ url }),
+//         })
+//             .then(response => response.text())
+//             .then(data => {
+//                 aiResponse.innerText = data;
+//             })
+//             .catch(error => {
+//                 console.error('Error:', error);
+//                 alert('An error occurred. Check console for details.');
+//             });
+//     } else {
+//         alert('Please enter a YouTube URL');
+//     }
 
-    youtubeUrlInput.value = '';
-};
+//     youtubeUrlInput.value = '';
+// };
 
 // Function to update the displayed flashcard
 function updateCardDisplay() {

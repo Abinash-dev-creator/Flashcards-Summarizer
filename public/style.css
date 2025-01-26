@@ -30,7 +30,7 @@
     box-shadow: 0 6px 16px var(--shadow-color);
     width: 90%;
     max-width: 900px;
-    text-align: center;
+    text-align: start;
     display: flex;
     flex-direction: column;
     overflow: hidden;
