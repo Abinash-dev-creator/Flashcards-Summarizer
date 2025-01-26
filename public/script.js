@@ -9,6 +9,7 @@ let dataSource = "none";
 
 const youtubeUrlInput = document.getElementById('youtubeUrl');
 const fetchYoutubeButton = document.getElementById('fetchYoutube');
+const aiResponse = document.getElementById('ai-response');
 const wikipediaTopicInput = document.getElementById('wikipediaTopic');
 const fetchWikipediaButton = document.getElementById('fetchWikipedia');
 const flashcard = document.getElementById('flashcard');
@@ -45,6 +46,33 @@ const feedbackText = document.getElementById('feedback-text');
 const startQuizButton = document.getElementById('startQuiz');
 const nextQuestionButton = document.getElementById('nextQuestion');
 
+fetchYoutubeButton.addEventListener('click', async () => {
+    getAiResponseAndAppend()
+})
+const getAiResponseAndAppend = () => {
+    const url = youtubeUrlInput.value;
+    if (url) {
+        fetch('/ai/talking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url }),
+        })
+            .then(response => response.text())
+            .then(data => {
+                aiResponse.innerText = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Check console for details.');
+            });
+    } else {
+        alert('Please enter a YouTube URL');
+    }
+
+    youtubeUrlInput.value = '';
+};
 
 // Function to update the displayed flashcard
 function updateCardDisplay() {
@@ -52,7 +80,7 @@ function updateCardDisplay() {
         frontText.innerText = "No cards created";
         backText.innerText = "";
         flashcardSection.style.display = "none";
-         dataSource = "none";
+        dataSource = "none";
         return;
     }
 
@@ -66,19 +94,19 @@ updateCardDisplay();
 // Placeholder summarization function (remove if you don't need it)
 async function summarizeTranscript(text) {
     // Placeholder summarization
-   if (text.length > 300){
-       return text.slice(0, 300) + ".....";
-   } else {
-      return text;
-   }
+    if (text.length > 300) {
+        return text.slice(0, 300) + ".....";
+    } else {
+        return text;
+    }
 }
 
 // Event Listener for wikipedia fetch button
 fetchWikipediaButton.addEventListener('click', async () => {
     const topic = wikipediaTopicInput.value;
-     dataSource = "wikipedia";
-     theorySection.style.display = "none";
-      quizSection.style.display = "none";
+    dataSource = "wikipedia";
+    theorySection.style.display = "none";
+    quizSection.style.display = "none";
 
     if (topic) {
         try {
@@ -93,28 +121,28 @@ fetchWikipediaButton.addEventListener('click', async () => {
                 let description = data.extract || data.description || data.detail;
                 console.log("Description", description);
                 if (description) {
-                     const sentences = description.split(".").filter(sentence => sentence.trim().length > 1).slice(0, 12); // Increased sentences
-                      if (sentences.length > 2) {
-                         cards = sentences.map(term => ({
-                             term: term.trim(),
-                             definition: term.trim()
-                         }));
-                         currentCardIndex = 0;
-                          dataSourceTitle.innerText = "Data Source: Wikipedia";
-                          flashcardSection.style.display = "block";
-                         updateCardDisplay();
-                      } else {
-                         alert("Not enough data from wikipedia");
+                    const sentences = description.split(".").filter(sentence => sentence.trim().length > 1).slice(0, 12); // Increased sentences
+                    if (sentences.length > 2) {
+                        cards = sentences.map(term => ({
+                            term: term.trim(),
+                            definition: term.trim()
+                        }));
+                        currentCardIndex = 0;
+                        dataSourceTitle.innerText = "Data Source: Wikipedia";
+                        flashcardSection.style.display = "block";
+                        updateCardDisplay();
+                    } else {
+                        alert("Not enough data from wikipedia");
                         flashcardSection.style.display = "none";
                         cards = [];
-                         updateCardDisplay();
-                      }
+                        updateCardDisplay();
+                    }
 
                 } else {
                     alert("No data Available");
-                     flashcardSection.style.display = "none";
-                     cards = [];
-                     updateCardDisplay();
+                    flashcardSection.style.display = "none";
+                    cards = [];
+                    updateCardDisplay();
                 }
 
             } else {
@@ -122,7 +150,7 @@ fetchWikipediaButton.addEventListener('click', async () => {
                 alert("Topic doesn't exist in wikipedia");
                 flashcardSection.style.display = "none";
                 cards = [];
-                 updateCardDisplay();
+                updateCardDisplay();
             }
 
         } catch (error) {
@@ -134,9 +162,9 @@ fetchWikipediaButton.addEventListener('click', async () => {
         }
     } else {
         alert("Please Enter the Topic");
-         flashcardSection.style.display = "none";
-         cards = [];
-         updateCardDisplay();
+        flashcardSection.style.display = "none";
+        cards = [];
+        updateCardDisplay();
     }
 });
 
@@ -219,14 +247,14 @@ function displayQuestion() {
         const question = quizQuestions[currentQuestionIndex];
         questionText.innerText = question.question;
 
-          optionsContainer.innerHTML = "";
-          question.options.forEach(option => {
+        optionsContainer.innerHTML = "";
+        question.options.forEach(option => {
             const button = document.createElement('button');
             button.innerText = option;
             button.classList.add("option");
             button.addEventListener('click', () => checkAnswer(option, question.correctAnswer));
             optionsContainer.appendChild(button);
-          });
+        });
     } else {
         endQuiz();
     }

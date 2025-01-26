@@ -1,15 +1,24 @@
 const express = require('express');
 const path = require('path');
-const {getSubtitle}= require('./yt.js');
+const { getSubtitle } = require('./yt.js');
+const { run } = require('./ai.js');
 const app = express();
-const PORT = 3000; // You can change the port if needed
+const PORT = process.env.PORT || 4000; // You can change the port if needed
 
 // Serve static files from the 'public' directory
-app.post('/ai/talking',(req,res)=>{
-    console.log(req.body)
-    const url ="https://youtu.be/AdBzzpq3xV4?si=WGeMpFfsesY1uIg9"
-    getSubtitle(url) 
-    res.send('Hello from server')
+app.use(express.json())
+app.post('/ai/talking', async (req, res) => {
+  console.log(req.body)
+  const { url } = req.body
+  console.log(url);
+  
+  // const url = "https://youtu.be/AdBzzpq3xV4?si=WGeMpFfsesY1uIg9"
+
+  const subtitle = await getSubtitle(url);  // subtitle is an array of sentences
+  console.log(subtitle);
+
+  const response = await run(subtitle);    // generating flashcards
+  res.send(response)                       // sending the response
 })
 app.use(express.static(path.join(__dirname, 'public')));
 
