@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flashy Learners - Create flashcards and quizzes from YouTube videos and Wikipedia articles">
+    <title>Flashy@Learners</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/youtube-transcript@1.0.6/dist/index.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Flashy-Learners</h1>
+            <p>Level Up Your Learning!</p>
+        </header>
+
+        <main class="content-area">
+            <section class="input-section">
+                <h2>Create Your Deck</h2>
+                <div class="input-group">
+                    <label for="youtubeUrl">YouTube URL:</label>
+                    <input type="url" id="youtubeUrl" placeholder="Enter YouTube URL">
+                    <button id="fetchYoutube" class="fetch-button">Fetch Data</button>
+                </div>
+                <div class="input-group">
+                    <label for="wikipediaTopic">Wikipedia Topic:</label>
+                    <input type="text" id="wikipediaTopic" placeholder="Enter Wikipedia Topic">
+                    <button id="fetchWikipedia" class="fetch-button">Fetch Data</button>
+                </div>
+            </section>
+
+            <section class="flashcard-section" style="display: none;">
+                <h3 id="data-source-title" class="data-source-title"></h3>
+                <div class="flashcard-area">
+                    <div class="card" id="flashcard" aria-label="Flashcard">
+                        <div class="front">
+                            <p id="front-text" class="card-text">Term goes here</p>
+                        </div>
+                        <div class="back" style="display: none;">
+                            <p id="back-text" class="card-text">Definition goes here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-controls">
+                    <button id="prevCard" class="card-control-btn">Previous</button>
+                    <button id="nextCard" class="card-control-btn">Next</button>
+                    <button id="shuffleCard" class="card-control-btn">Shuffle</button>
+                </div>
+                <div class="save-load-area">
+                    <button id="saveCards" class="card-control-btn">Save Deck</button>
+                    <button id="loadCards" class="card-control-btn">Load Deck</button>
+                </div>
+            </section>
+
+            <section class="theory-section" style="display: none;">
+                <h3 id="theory-data-source" class="data-source-title"></h3>
+                <div class="theory-area" id="theory-area">
+                    <p id="theory-text" class="theory-text"></p>
+                </div>
+            </section>
+
+            <section class="quiz-section" style="display: none;">
+                <h2>Challenge Mode</h2>
+                <div class="question-area">
+                    <p id="question" class="quiz-question"></p>
+                    <div class="options">
+                        <button class="option" data-index="0"></button>
+                        <button class="option" data-index="1"></button>
+                        <button class="option" data-index="2"></button>
+                        <button class="option" data-index="3"></button>
+                    </div>
+                    <div class="feedback">
+                        <p id="feedback-text"></p>
+                    </div>
+                </div>
+                <div class="quiz-controls">
+                    <button id="startQuiz" class="quiz-control-btn">Start Challenge</button>
+                    <button id="nextQuestion" class="quiz-control-btn" style="display: none;">Next Question</button>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Flashy Learners. All rights reserved.</p>
+        </footer>
+    </div>
+    <div id="loading-indicator" style="display: none;">Loading...</div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

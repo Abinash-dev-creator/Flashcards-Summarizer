@@ -1,0 +1,319 @@
+/* Global Styles */
+:root {
+    --primary-color: #6e44ff;
+    --secondary-color: #2c1e4a;
+    --text-color: #e0e0e0;
+    --border-color: #8860d0;
+    --hover-color: #5e35b1;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --card-bg-color: #3c2f6a;
+  }
+  
+  body {
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-color);
+  }
+  
+  .app-container {
+    background-color: rgba(44, 30, 74, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 16px var(--shadow-color);
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+  }
+  
+  .app-container:hover {
+    box-shadow: 0 8px 20px rgba(110, 68, 255, 0.4);
+  }
+  
+  /* Header Styles */
+  header {
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+  }
+  
+  header h1 {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px var(--primary-color);
+  }
+  
+  /* Main Content Styles */
+  main {
+    flex: 1;
+  }
+  
+  .content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  /* Section Styles */
+  .input-section, .flashcard-section, .quiz-section, .theory-section {
+    padding: 20px;
+    background-color: rgba(60, 47, 106, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 3px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
+  }
+  
+  /* Input Styles */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    margin-bottom: 8px;
+    font-size: 1.15em;
+    color: var(--text-color);
+  }
+  
+  .input-group input {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1.1em;
+    transition: border-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+  }
+  
+  .input-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+  
+  /* Button Styles */
+  .fetch-button, .card-control-btn, .quiz-control-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .fetch-button {
+    margin-top: 15px;
+    align-self: flex-start;
+  }
+  
+  .fetch-button:hover, .card-control-btn:hover, .quiz-control-btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(110, 68, 255, 0.4);
+  }
+  
+  /* Flashcard Styles */
+  .flashcard-section {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .data-source-title {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-style: italic;
+    text-align: left;
+    font-weight: normal;
+  }
+  
+  .card {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    padding: 30px;
+    min-height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--border-color);
+  }
+  
+  .card:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 4px 10px rgba(110, 68, 255, 0.4);
+  }
+  
+  .card-text {
+    font-size: 1.3em;
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  .front, .back {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    width: 100%;
+    padding: 0 15px;
+  }
+  
+  .card-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  /* Quiz Styles */
+  .quiz-section {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .quiz-question {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .options button {
+    padding: 12px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    transition: all 0.2s ease-in-out;
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .options button:hover {
+    background-color: rgba(110, 68, 255, 0.3);
+    transform: translateX(5px);
+  }
+  
+  .quiz-controls {
+    margin-top: 20px;
+  }
+  
+  /* Theory Section Styles */
+  .theory-section {
+    text-align: left;
+  }
+  
+  .theory-area {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: rgba(60, 47, 106, 0.5);
+    overflow: auto;
+    max-height: 300px;
+    font-size: 1.1em;
+  }
+  
+  .theory-text {
+    line-height: 1.6;
+  }
+  
+  /* Accessibility and Focus Styles */
+  .fetch-button:focus,
+  .card-control-btn:focus,
+  .quiz-control-btn:focus,
+  .options button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+  
+  /* Loading Indicator Styles */
+  #loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(44, 30, 74, 0.9);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 20px var(--primary-color);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .app-container {
+      width: 95%;
+      padding: 15px;
+    }
+    
+    .card {
+      padding: 20px;
+    }
+    
+    .card-text {
+      font-size: 1.1em;
+    }
+  
+    .fetch-button, .card-control-btn, .quiz-control-btn {
+      padding: 10px 15px;
+      font-size: 1em;
+    }
+  
+    header h1 {
+      font-size: 2em;
+    }
+  }
+  
+  /* Neon Glow Effect */
+  @keyframes neon-glow {
+    0% {
+      text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+    }
+    50% {
+      text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+    }
+    100% {
+      text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+    }
+  }
+  
+  header h1 {
+    animation: neon-glow 2s ease-in-out infinite;
+  }
+  
