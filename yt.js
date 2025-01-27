@@ -6,7 +6,7 @@ function extractVideoId(url) {
     return match ? match[1] : null;
 }
 
-const url = "https://youtu.be/AdBzzpq3xV4?si=WGeMpFfsesY1uIg9";
+const url = "https://www.youtube.com/watch?v=Q5RhxOOCWiY";
 
 const getSubtitle = async (url) => {
 
@@ -28,7 +28,7 @@ const getSubtitle = async (url) => {
         // Fetch transcript using youtube-transcript library
         let transcriptData;
         try {
-            transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+            transcriptData = await YoutubeTranscript.fetchTranscript(videoId, languages=['en']);
         } catch (error) {
             console.error("Error fetching transcript with library:", error);
             // Changed from alert to console.log
@@ -50,7 +50,7 @@ const getSubtitle = async (url) => {
             .filter(sentence => sentence.trim().length > 1)
             .slice(0, 12); // Limit to 12 sentences for flashcards
 
-        // console.log(sentences)
+        console.log(sentences)
         // console.log("Data Source: YouTube Transcript");
         return sentences;
     } catch (error) {
@@ -60,5 +60,7 @@ const getSubtitle = async (url) => {
     }
 
 }
+
+getSubtitle(url);
 
 module.exports = { getSubtitle };
