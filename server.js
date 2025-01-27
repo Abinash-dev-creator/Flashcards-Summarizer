@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.post('/ai/talking', async (req, res) => {
+app.post('/ai', async (req, res) => {
   console.log(req.body)
   const { url } = req.body
   console.log(url);

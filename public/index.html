@@ -108,7 +108,7 @@
         const getAiResponseAndAppend = () => {
             const url = youtubeUrlInput.value;
             if (url) {
-                fetch('/ai/talking', {
+                fetch('/ai', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
