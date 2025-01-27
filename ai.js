@@ -47,6 +47,6 @@ async function run(prompt) {
   return result.response.text();
 }
 
-// run("how to bully someone");
+run("how to love someone");
 
 module.exports = { run };

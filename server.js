@@ -30,6 +30,7 @@ app.post('/ai', async (req, res) => {
   const response = await run(subtitle);    // generating flashcards
   res.send(response)                       // sending the response
 })
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
