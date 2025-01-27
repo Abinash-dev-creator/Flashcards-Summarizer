@@ -1,9 +1,13 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors'); // Import cors
 const { getSubtitle } = require('./yt.js');
 const { run } = require('./ai.js');
 const app = express();
 const PORT = process.env.PORT || 5000; // You can change the port if needed
+
+// Enable CORS
+app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.json())
